@@ -364,18 +364,18 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 
 - (void)setShadowOpacity:(CGFloat)shadowOpacity
 {
-    if (_shadowOpacity != shadowOpacity) {
+    /*if (_shadowOpacity != shadowOpacity) {
         _shadowOpacity = shadowOpacity;
         self.view.layer.shadowOpacity = _shadowOpacity;
-    }
+    }*/
 }
 
 - (void)setShadowRadius:(CGFloat)shadowRadius
 {
-    if (_shadowRadius != shadowRadius) {
+    /*if (_shadowRadius != shadowRadius) {
         _shadowRadius = shadowRadius;
         self.view.layer.shadowRadius = _shadowRadius;
-    }
+    }*/
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius
@@ -674,7 +674,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
         CGRect formSheetRect = self.presentedFSViewController.view.frame;
         CGRect screenRect = [self.screenFrameWhenKeyboardVisible CGRectValue];
         
-        if (screenRect.size.height > CGRectGetHeight(formSheetRect)) {
+        //if (screenRect.size.height < CGRectGetMaxY(formSheetRect)) {
             switch (self.movementWhenKeyboardAppears) {
                 case MZFormSheetWhenKeyboardAppearsCenterVertically:
                     formSheetRect.origin.y = ([MZFormSheetController statusBarHeight] + screenRect.size.height - formSheetRect.size.height)/2 - screenRect.origin.y;
@@ -690,9 +690,9 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
                 default:
                     break;
             }
-        } else {
+        /*} else {
             formSheetRect.origin.y = self.top;
-        }
+        }*/
         
         self.presentedFSViewController.view.frame = formSheetRect;
     } else if (self.shouldCenterVertically) {
