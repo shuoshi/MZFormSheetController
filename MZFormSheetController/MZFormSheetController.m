@@ -959,6 +959,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
             completionHandler(formSheetController);
         }
     }];
+    
 }
 
 
@@ -977,11 +978,17 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
         formSheetController = [[MZFormSheetController sharedQueue] lastObject];
     }
 
-    [formSheetController dismissAnimated:animated completionHandler:^(UIViewController *presentedFSViewController) {
+    if (formSheetController) {
+        [formSheetController dismissAnimated:animated completionHandler:^(UIViewController *presentedFSViewController) {
+            if (completionHandler) {
+                completionHandler(formSheetController);
+            }
+        }];
+    } else {
         if (completionHandler) {
             completionHandler(formSheetController);
         }
-    }];
+    }
 }
 
 
